@@ -6,13 +6,13 @@ use GuzzleHttp\Client;
 
 trait ConsumeExternalService {
 
-    public function consumeExternalService($method, $url, $params = [], $headers = [])
+    public function performRequest($method, $url, $formParams = [], $headers = [])
     {
         $client = new Client([
             'base_uri' => $this->baseUri,
         ]);
         $response = $client->request($method, $url, [
-            'params' => $params,
+            'form_params' => $formParams,
             'headers' => $headers
         ]);
         return $response->getBody()->getContents();
